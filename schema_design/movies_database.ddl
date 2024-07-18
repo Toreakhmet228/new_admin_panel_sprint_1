@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS content.person_film_work (
     person_id uuid NOT NULL REFERENCES content.person(id) ON DELETE CASCADE,
     film_work_id uuid NOT NULL REFERENCES content.film_work(id) ON DELETE CASCADE,
     role VARCHAR(15),
-    created timestamp with time zone NOT NULL
+    created timestamp with time zone NOT NULL,
+    UNIQUE (person_id, film_work_id, role)
 );
 
 CREATE INDEX CONCURRENTLY IF NOT EXISTS person_film_work_person_id
